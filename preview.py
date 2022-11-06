@@ -56,24 +56,19 @@ def selctFile():
         if name:
             encoding()
             showinfo(message=f"{name[:-1]} added")
-        # showinfo(message=f"{os.path.basename(filenames)} added")
-    # os.remove(filename.name)
-    # pathlib.Path(filename.name).rename(path)
-    # showinfo(message=f"name {os.path.basename(filename)}")
-
 
 def remove_file():
     if len(images)>0:
         name=""
         filet=(('jpg files','*.jpg*'),('All files', '*.*'))
         filenames=filedialog.askopenfilenames(title='Open files',initialdir=path,filetypes=filet)
-        # if os.path.exists(path+"\\"+os.path.basename(filename)):
+        
         if filenames:
             for filename in filenames:
                 if os.getcwd()+"\\"+path == os.path.dirname(filename).replace("/","\\"):
                     os.remove(filename)
                     name+=os.path.basename(filename)+","
-                    # showinfo(message=f"{os.path.basename(filename)} deleted")
+                    
                 else:
                     showerror(message="Please select image from the current folder",title="Out of range")
             if name:
@@ -143,13 +138,13 @@ def detectface():
                         cv2.putText(frame,f"{name}",(left+5,top),cv2.FONT_HERSHEY_COMPLEX,0.5,(255,255,255),1)
                     else:
                         cv2.putText(frame,"UNKNOWN",(left,bottom),cv2.FONT_HERSHEY_COMPLEX,1,(255,255,255),1)
-                # cv2.rectangle(frame, (left, bottom-35), (right, bottom), (0, 255, 0), cv2.FILLED)
+                
                 except:
                     cv2.putText(frame,"UNKNOWN",(left,bottom),cv2.FONT_HERSHEY_COMPLEX,1,(255,255,255),1)
             cv2.putText(frame,"Found {0} faces!".format(len(faces)),(10,30),cv2.FONT_HERSHEY_COMPLEX,0.7,(255,0,0),2)
             # Display the resulting frame
             cv2.imshow('Attendence', frame)
-            # cv2.waitKey(1)
+            
             if cv2.waitKey(1) & 0xFF == ord('q'):
                 break
         cap.release()
@@ -175,7 +170,7 @@ def newwin():
 
 if __name__=="__main__":
     root=Tk()
-    # ph1=PhotoImage(file='zener diode.png')
+    
     names=[]
     path='images'
     images=os.listdir(path)
@@ -184,12 +179,10 @@ if __name__=="__main__":
     en=StringVar()
     root.title("Preview")
     root.geometry("500x500")
-    # root.iconphoto(False,ph1)
+    
     root.configure(bg="skyblue")
     l1=Label(text="Welcome",font="bold 32",fg="red",bg="skyblue")
     l1.pack(side=TOP)
-    # l2=Label(text="Enter some data",font="bold 18",fg="red")
-    # l2.pack(side=TOP)
     but1=Button(text="Start Attendence",font="bold 18",fg="red",bg="yellow",padx=20,pady=10,command=newwin)
     but1.place(x=255,y=250)
     chosefile=Button(text="Add Image",font="bold 18",fg="brown",bg="yellow",padx=20,pady=10,command=selctFile)
