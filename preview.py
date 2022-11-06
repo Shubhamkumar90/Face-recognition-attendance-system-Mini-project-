@@ -170,7 +170,6 @@ def newwin():
 
 if __name__=="__main__":
     root=Tk()
-    # ph1=PhotoImage(file='zener diode.png')
     names=[]
     path='images'
     images=os.listdir(path)
@@ -179,12 +178,9 @@ if __name__=="__main__":
     en=StringVar()
     root.title("Preview")
     root.geometry("500x500")
-    # root.iconphoto(False,ph1)
     root.configure(bg="skyblue")
     l1=Label(text="Welcome",font="bold 32",fg="red",bg="skyblue")
     l1.pack(side=TOP)
-    # l2=Label(text="Enter some data",font="bold 18",fg="red")
-    # l2.pack(side=TOP)
     but1=Button(text="Start Attendence",font="bold 18",fg="red",bg="yellow",padx=20,pady=10,command=newwin)
     but1.place(x=255,y=250)
     chosefile=Button(text="Add Image",font="bold 18",fg="brown",bg="yellow",padx=20,pady=10,command=selctFile)
