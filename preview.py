@@ -41,14 +41,12 @@ def selctFile():
     filet=(('jpg files','*.jpg*'),('All files', '*.*'))
     name=""
     filenames=filedialog.askopenfilenames(title='Open files',initialdir='/',filetypes=filet)
-    # shutil.move(filename.name, path+"\\") #not working
     if filenames:
         for filename in filenames:
             if imghdr.what(filename):
                 if not os.path.exists(path+"\\"+os.path.basename(filename)):
                     shutil.copy(filename,path)
                     name=name+os.path.basename(filename)+","
-                    # showinfo(message=f"{os.path.basename(filename)} added")
                 else:
                     showinfo(message="File already exist")
             else:
@@ -56,10 +54,7 @@ def selctFile():
         if name:
             encoding()
             showinfo(message=f"{name[:-1]} added")
-        # showinfo(message=f"{os.path.basename(filenames)} added")
-    # os.remove(filename.name)
-    # pathlib.Path(filename.name).rename(path)
-    # showinfo(message=f"name {os.path.basename(filename)}")
+        
 
 
 def remove_file():
@@ -67,13 +62,13 @@ def remove_file():
         name=""
         filet=(('jpg files','*.jpg*'),('All files', '*.*'))
         filenames=filedialog.askopenfilenames(title='Open files',initialdir=path,filetypes=filet)
-        # if os.path.exists(path+"\\"+os.path.basename(filename)):
+        
         if filenames:
             for filename in filenames:
                 if os.getcwd()+"\\"+path == os.path.dirname(filename).replace("/","\\"):
                     os.remove(filename)
                     name+=os.path.basename(filename)+","
-                    # showinfo(message=f"{os.path.basename(filename)} deleted")
+                    
                 else:
                     showerror(message="Please select image from the current folder",title="Out of range")
             if name:
@@ -98,7 +93,7 @@ def encoding():
             encoded_face = face_recognition.face_encodings(image)[0]
             encode.append(encoded_face)
         except:
-            # print(nm)
+            
             ername=ername+" "+nm
     if ername:
         showwarning(message=f"{ername} is not clear or no face detected")
@@ -143,13 +138,13 @@ def detectface():
                         cv2.putText(frame,f"{name}",(left+5,top),cv2.FONT_HERSHEY_COMPLEX,0.5,(255,255,255),1)
                     else:
                         cv2.putText(frame,"UNKNOWN",(left,bottom),cv2.FONT_HERSHEY_COMPLEX,1,(255,255,255),1)
-                # cv2.rectangle(frame, (left, bottom-35), (right, bottom), (0, 255, 0), cv2.FILLED)
+                
                 except:
                     cv2.putText(frame,"UNKNOWN",(left,bottom),cv2.FONT_HERSHEY_COMPLEX,1,(255,255,255),1)
             cv2.putText(frame,"Found {0} faces!".format(len(faces)),(10,30),cv2.FONT_HERSHEY_COMPLEX,0.7,(255,0,0),2)
             # Display the resulting frame
             cv2.imshow('Attendence', frame)
-            # cv2.waitKey(1)
+            
             if cv2.waitKey(1) & 0xFF == ord('q'):
                 break
         cap.release()
